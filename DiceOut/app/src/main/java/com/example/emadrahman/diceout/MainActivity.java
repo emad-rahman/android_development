@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //adding comment to see if git is working
         score = 0;
         Toast.makeText(getApplicationContext(), "Welcome to DiceOut!", Toast.LENGTH_SHORT).show();
     }
