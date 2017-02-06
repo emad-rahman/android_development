@@ -1,5 +1,6 @@
 package com.example.emadrahman.diceout;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,9 +10,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +29,18 @@ public class MainActivity extends AppCompatActivity {
     int score;
     // Field to hold random number
     Random rand;
+
+
+    int die1;
+    int die2;
+    int die3;
+
+    //List to hold dice
+    List<Integer> dice;
+
+    //List to hold image views
+    List<ImageView> diceImageViews;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +67,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Instantiate random number generator
         rand = new Random();
+
+        //create arraylist container for the dice values
+        dice = new ArrayList<Integer>();
+
+        ImageView die1Image = (ImageView) findViewById(R.id.die1Image);
+        ImageView die2Image = (ImageView) findViewById(R.id.die2Image);
+        ImageView die3Image = (ImageView) findViewById(R.id.die3Image);
+
+        diceImageViews = new ArrayList<ImageView>();
+        diceImageViews.add(die1Image);
+        diceImageViews.add(die2Image);
+        diceImageViews.add(die3Image);
+
     }
 
     @Override
@@ -75,8 +106,36 @@ public class MainActivity extends AppCompatActivity {
 
     public void rollDice(View v){
         rollResult.setText("Clicked!");
-        int num = rand.nextInt(6) + 1;
-        String randomValue = "Number generated: " +  num;
-        Toast.makeText(getApplicationContext(), randomValue, Toast.LENGTH_SHORT).show();
+
+        //roll dice
+        die1 = rand.nextInt(6) + 1;
+        die2 = rand.nextInt(6) + 1;
+        die3 = rand.nextInt(6) + 1;
+
+        //set dice value into arraylist
+        dice.clear();
+        dice.add(die1);
+        dice.add(die2);
+        dice.add(die3);
+
+        //iterate through the list of dice and get the dice value in the form of the name
+        //of the image file. eg die_1.png
+        for(int i = 0; i < 3; i++){
+            String imageName = "die_" + dice.get(i) + ".png";
+
+            try{
+                InputStream stream = getAssets().open(imageName);
+                Drawable d = Drawable.createFromStream(stream, null);
+                diceImageViews.get(i).setImageDrawable(d);
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        //Build message with the result
+        String msg = "You rolled a " + die1 + ", " + die2 + ", and " + die3;
+
+        //update the app to display the result of message
+        rollResult.setText(msg);
     }
 }
