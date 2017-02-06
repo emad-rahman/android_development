@@ -8,10 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView rollResult;
+    Button rollButton;
+
+    // Field to hold the score
     int score;
 
     @Override
@@ -33,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         //adding comment to see if git is working
         score = 0;
         Toast.makeText(getApplicationContext(), "Welcome to DiceOut!", Toast.LENGTH_SHORT).show();
+
+        rollResult = (TextView) findViewById(R.id.rollResult);
+        rollButton =(Button) findViewById(R.id.rollButton);
     }
 
     @Override
@@ -55,5 +64,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void rollDice(View v){
+        rollResult.setText("Clicked!");
     }
 }
