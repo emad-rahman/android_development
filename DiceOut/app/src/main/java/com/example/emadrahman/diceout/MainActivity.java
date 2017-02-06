@@ -23,14 +23,14 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     TextView rollResult;
-    Button rollButton;
 
     // Field to hold the score
     int score;
     // Field to hold random number
     Random rand;
-
-
+    //Field to hold the score text
+    TextView scoreText;
+    //Fields to hold die values
     int die1;
     int die2;
     int die3;
@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                rollDice(view);
             }
         });
 
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Welcome to DiceOut!", Toast.LENGTH_SHORT).show();
 
         rollResult = (TextView) findViewById(R.id.rollResult);
-        rollButton =(Button) findViewById(R.id.rollButton);
 
         // Instantiate random number generator
         rand = new Random();
@@ -80,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         diceImageViews.add(die2Image);
         diceImageViews.add(die3Image);
 
+        scoreText = (TextView) findViewById(R.id.scoreText);
     }
 
     @Override
@@ -133,9 +132,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Build message with the result
-        String msg = "You rolled a " + die1 + ", " + die2 + ", and " + die3;
+        String msg;
+
+        if (die1 == die2 && die1 == die3){
+            //triples
+            int scoreDelta = die1 * 100;
+            msg = "You rolled a triple " + die1 + "! You score " + scoreDelta + " points!";
+            score += scoreDelta;
+        }else if(die1 == die2 || die1 == die3 || die2 == die3){
+            msg = "You rolled doubles for 50 points!";
+            score += 50;
+        }else {
+            msg = "You didn't score anything this roll. Try again!";
+        }
 
         //update the app to display the result of message
         rollResult.setText(msg);
+        scoreText.setText("Score: " + score);
     }
 }

@@ -11,30 +11,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.emadrahman.diceout.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:background="@android:color/holo_green_dark">
 
     <TextView
         android:id="@+id/rollResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Let's Play!" />
+        android:text="Let's Play!"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
 
-    <Button
-        android:text="Roll!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rollButton"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/die2Image"
-        android:onClick="rollDice"
-        android:layout_centerHorizontal="true" />
-    
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/die1Image"
         android:layout_below="@+id/rollResult"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="50dp"
         android:layout_alignParentLeft="true"
         android:src="@drawable/die_1"/>
 
@@ -43,7 +37,7 @@
         android:layout_height="100dp"
         android:id="@+id/die2Image"
         android:layout_below="@+id/rollResult"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/die_1"/>
 
@@ -52,10 +46,23 @@
         android:layout_height="100dp"
         android:id="@+id/die3Image"
         android:layout_below="@+id/rollResult"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="50dp"
         android:layout_alignParentRight="true"
         android:src="@drawable/die_1"/>
-        
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scoreText"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Score: 0"
+        android:layout_marginBottom="50dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/background_light" />
+
+
 </RelativeLayout>
 
 
