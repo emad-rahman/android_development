@@ -23,6 +23,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     TextView rollResult;
+    Button resetButton;
 
     // Field to hold the score
     int score;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        this.setTitle("Dice Out Game");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         //adding comment to see if git is working
         score = 0;
-        Toast.makeText(getApplicationContext(), "Welcome to DiceOut!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Welcome to Dice Out!", Toast.LENGTH_SHORT).show();
 
         rollResult = (TextView) findViewById(R.id.rollResult);
 
@@ -79,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
         diceImageViews.add(die3Image);
 
         scoreText = (TextView) findViewById(R.id.scoreText);
+
+        resetButton = (Button) findViewById(R.id.resetButton);
     }
 
     @Override
@@ -149,5 +152,25 @@ public class MainActivity extends AppCompatActivity {
         //update the app to display the result of message
         rollResult.setText(msg);
         scoreText.setText("Score: " + score);
+    }
+
+    public void resetScore(View v){
+        score = 0;
+        String msg = "Resetting";
+
+        for(int i = 0; i < 3; i++){
+            try{
+                InputStream stream = getAssets().open("die_1.png");
+                Drawable d = Drawable.createFromStream(stream, null);
+                diceImageViews.get(i).setImageDrawable(d);
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        rollResult.setText(msg);
+        scoreText.setText("Score: " + score);
+
+
     }
 }
