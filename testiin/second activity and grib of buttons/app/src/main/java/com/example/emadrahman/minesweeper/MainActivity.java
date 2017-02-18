@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         Resources resource = getResources();
         btn.setBackground(new BitmapDrawable(resource, scaledBitmap));
 
+        btn.setText("" + col);
+
     }
 
     private void lockButtonSizes() {
