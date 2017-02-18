@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RadioButtonAndSettings</string>
+    <string name="solar_panels">"%1$d solar panels"</string>
+</resources>
