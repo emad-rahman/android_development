@@ -1,5 +1,6 @@
 package com.example.emadrahman.radiobuttonandsettings;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,53 +16,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createRadioButtons();
-        setupPrintSelected();
+        setupOptionsButton();
     }
 
-    private void setupPrintSelected() {
-
-        Button button = (Button) findViewById(R.id.find_selected);
+    private void setupOptionsButton() {
+        Button button = (Button) findViewById(R.id.options_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RadioGroup group = (RadioGroup) findViewById(R.id.radio_group_install_size);
-                int getIdOfSelected = group.getCheckedRadioButtonId();
-
-                RadioButton radioButton = (RadioButton) findViewById(getIdOfSelected);
-                String message = radioButton.getText().toString();
-
-                Toast.makeText(MainActivity.this, "Selected button text: "+ message, Toast.LENGTH_SHORT).show();
+                Intent intent = OptionsActivity.makeIntent(MainActivity.this);
+                startActivity(intent);
             }
         });
     }
 
-    private void createRadioButtons() {
-        RadioGroup group = (RadioGroup) findViewById(R.id.radio_group_install_size);
 
-        int[] numPanels = getResources().getIntArray(R.array.num_solar_panels);
-
-
-        //create the buttons
-        for(int i = 0; i < numPanels.length; i++){
-            final int numPanel = numPanels[i];
-
-            RadioButton button = new RadioButton(this);
-            button.setText(getString(R.string.solar_panels, numPanel));
-
-            //set on-click call backs
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "You clicked " + numPanel, Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            //Add to radio group
-
-            group.addView(button);
-        }
-
-
-    }
 }
