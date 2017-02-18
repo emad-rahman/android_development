@@ -20,7 +20,18 @@
         android:text="go to second page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/secondActivityBtn" />
+        android:id="@+id/secondActivityBtn"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentEnd="true" />
+
+    <TableLayout
+        android:id="@+id/tableForButtons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/secondActivityBtn"
+        android:layout_alignParentStart="true">
+
+
+    </TableLayout>
 </RelativeLayout>
