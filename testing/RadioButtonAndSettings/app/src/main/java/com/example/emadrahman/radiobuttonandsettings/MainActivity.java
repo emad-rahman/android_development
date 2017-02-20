@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupOptionsButton();
+        refreshScreen();
     }
+
 
     private void setupOptionsButton() {
         Button button = (Button) findViewById(R.id.options_button);
@@ -31,4 +34,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void refreshScreen() {
+        //refresh numPanels display
+        TextView tvNumPanels = (TextView) findViewById(R.id.num_panels_installed);
+        int numPanels = OptionsActivity.getNumPanelsInstalled(this);
+        tvNumPanels.setText("" + numPanels);
+
+        //Set the cost
+        TextView tvCost = (TextView) findViewById(R.id.cost_of_panels);
+        int cost = numPanels * 1000;
+        tvCost.setText("$" + cost);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshScreen();
+    }
 }

@@ -48,8 +48,12 @@ public class OptionsActivity extends AppCompatActivity {
 
             //Add to radio group
             group.addView(button);
-        }
 
+            //select default button
+            if (numPanel == getNumPanelsInstalled(this)){
+                button.setChecked(true);
+            }
+        }
 
     }
 
@@ -62,7 +66,7 @@ public class OptionsActivity extends AppCompatActivity {
 
     public static int getNumPanelsInstalled(Context context){
         SharedPreferences prefs = context.getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        return prefs.getInt("Num installed panels ", 0);
+        return prefs.getInt("Num installed panels ", context.getResources().getInteger(R.integer.default_num_solar_panels));
     }
 
     public static Intent makeIntent(Context context){

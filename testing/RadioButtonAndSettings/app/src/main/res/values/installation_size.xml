@@ -6,4 +6,8 @@
         <item>25</item>
         <item>50</item>
     </integer-array>
+
+    <integer name="default_num_solar_panels">
+        25
+    </integer>
 </resources>
