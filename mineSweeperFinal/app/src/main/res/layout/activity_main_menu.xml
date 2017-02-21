@@ -13,5 +13,45 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Main Menu"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="36dp"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:text="Play Game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_marginEnd="29dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/button_play_game"
+
+        />
+
+    <Button
+        android:text="Options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_play_game"
+        android:layout_alignStart="@+id/button_play_game"
+        android:layout_marginTop="20dp"
+        android:id="@+id/button_options"
+        android:layout_alignEnd="@+id/button_play_game" />
+
+    <Button
+        android:text="Help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_help"
+        android:layout_below="@+id/button_options"
+        android:layout_alignStart="@+id/button_options"
+        android:layout_marginTop="20dp"
+        android:layout_alignEnd="@+id/button_options"
+        />
 </RelativeLayout>
